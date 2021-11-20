@@ -1,0 +1,16 @@
+{
+  "name": "polkadot-notifications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord-webhook-node": "^1.1.8",
+    "node-docker-monitor": "^1.0.11"
+  }
+}
