@@ -1,0 +1,60 @@
+version: '3'
+services:
+
+  twopolkadot:
+    container_name: twopolkadot
+    image: parity/polkadot:v0.9.12
+    hostname: twopolkadot
+    restart: unless-stopped
+    ports:
+      - 30333:30333 # p2p port
+      - 9933:9933 # rpc port
+      - 9944:9944 # ws port
+    volumes:
+      - ~/polkadot/polkadot:/polkadot
+      - ~/polkadot/data:/data
+    networks:
+      - twopolkanetwork
+    command: [
+      "--name", "dotNate",
+      "--ws-external",
+      "--rpc-external",
+      "--rpc-cors", "all"
+    ]
+
+  twopolkadotui:
+    container_name: twopolkadotui
+    hostname: twopolkadotui
+    image: jacogr/polkadot-js-apps
+    restart: unless-stopped
+    environment:
+      - WS_URL=wss://twopolkasocket.nated.ca/
+    ports:
+      - 8080:80
+    networks:
+      - twopolkanetwork
+
+  twopolkaproxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: twopolkaproxy
+    hostname: twopolkaproxy
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 81:81
+      - 443:443
+    volumes:
+      - ~/nginx-proxy-manager/data:/data
+      - ~/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+    networks:
+      - twopolkanetwork
+
+networks:
+  twopolkanetwork:
+    driver: bridge
+    external: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.24.0.0/16
+          gateway: 172.24.0.1
