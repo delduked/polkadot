@@ -16,7 +16,7 @@ services:
     networks:
       - twopolkanetwork
     command: [
-      "--name", "dotNate",
+      "--name", "your-name",
       "--ws-external",
       "--rpc-external",
       "--rpc-cors", "all"
@@ -28,7 +28,7 @@ services:
     image: jacogr/polkadot-js-apps
     restart: unless-stopped
     environment:
-      - WS_URL=wss://twopolkasocket.nated.ca/
+      - WS_URL=wss://websocketurl/
     ports:
       - 8080:80
     networks:

@@ -1,8 +1,7 @@
 const { Webhook, MessageBuilder } = require('discord-webhook-node');
 const monitor = require('node-docker-monitor')
 
-//const twoPolkadot = new Webhook('https://discord.com/api/webhooks/911385896690008154/Fb6jDwkzjce4KsDbYhLp32pPzzubqqAjjS7ntuS-Mwc6QHLv6hdp2tMeWkTWAVtgTepT');
-const onePolkadot = new Webhook('https://discord.com/api/webhooks/911399776078135316/VRSqbhrJnJI_auwAfvu6amFL-FHw_vO6K96-kPxoS3woe-3VNBH0wBNqZxRiGskdTia-');
+const onePolkadot = new Webhook('discord-webhook-url');
 
 monitor({
       onContainerUp: function(container) {
